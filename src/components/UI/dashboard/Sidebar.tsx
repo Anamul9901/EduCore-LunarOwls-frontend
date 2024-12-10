@@ -35,26 +35,24 @@ const Sidebar = () => {
   return (
     <div className="min-h-screen fixed h-full flex bg-gray-900">
       {/* Dashboard Sidebar */}
-      <div className="md:w-64 w-20 bg-gradient-to-b from-purple-900 to-blue-900 pt-6 shadow-2xl relative">
+      <div className="md:w-64 w-20 bg-gradient-to-b from-slate-900 to-slate-800 pt-6 shadow-2xl relative">
         <ul className="menu flex flex-col items-center md:items-start p-4">
           {/* Logo */}
           <Link href="/dashboard?key=dashboard">
             <div className="flex justify-center mb-8 hover:scale-105 transition-all duration-300 text-center text-xl font-bold">
-              <div>
-              EduCore
-              </div>
+              <div>EduCore</div>
             </div>
           </Link>
 
-          <hr className="border-purple-500 w-full mb-4 opacity-40" />
+          <hr className="border-purple-00 w-full mb-4 opacity-40" />
 
           {/* Dashboard */}
           <li className="w-full mb-2">
             <Link href="/dashboard?key=dashboard">
               <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                   queryValue === "dashboard"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                     : ""
                 }`}
               >
@@ -72,9 +70,9 @@ const Sidebar = () => {
               <li className="w-full mb-2">
                 <Link href="/dashboard/my-course?key=my-course">
                   <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                       queryValue === "my-course"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                         : ""
                     }`}
                   >
@@ -96,9 +94,9 @@ const Sidebar = () => {
               <li className="w-full mb-2">
                 <Link href="/dashboard/courses?key=courses">
                   <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                       queryValue === "courses"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                         : ""
                     }`}
                   >
@@ -118,9 +116,9 @@ const Sidebar = () => {
               <li className="w-full mb-2">
                 <Link href="/dashboard/students?key=students">
                   <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                       queryValue === "students"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                         : ""
                     }`}
                   >
@@ -138,9 +136,9 @@ const Sidebar = () => {
               <li className="w-full mb-2">
                 <Link href="/dashboard/faculties?key=faculties">
                   <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                       queryValue === "faculties"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                         : ""
                     }`}
                   >
@@ -158,9 +156,9 @@ const Sidebar = () => {
               <li className="w-full mb-2">
                 <Link href="/dashboard/courses?key=courses">
                   <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl ${
                       queryValue === "courses"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        ? "bg-slate-600 shadow-xl text-[#ff4a4afd] font-extrabold"
                         : ""
                     }`}
                   >
@@ -179,7 +177,7 @@ const Sidebar = () => {
           {/* Home */}
           <li className="w-full mb-2">
             <Link href="/">
-              <div className="block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl">
+              <div className="block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-slate-600 hover:shadow-xl">
                 <span className="material-icons md:hidden">
                   <FaHome />
                 </span>

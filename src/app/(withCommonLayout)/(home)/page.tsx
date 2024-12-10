@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { useGetAllCourseQuery } from "@/src/redux/features/course/coursApi";
 import CourseCard from "@/src/components/Card/CourseCard";
+import HeroSection from "@/src/components/HomeSection/HeroSection";
 
 const HomePage = () => {
   const [productLimit, setProductLimit] = useState(10);
   const [productPage, setProductPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
-  const [sortOption, setSortOption] = useState("");
 
   const data = { limit: productLimit, page: productPage, searchTerm, category };
   const { data: getAllCourse } = useGetAllCourseQuery(data);
@@ -42,11 +42,11 @@ const HomePage = () => {
 
   return (
     <div>
-      {/* <HeroSection /> */}
+      <HeroSection />
 
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row justify-end pt-4 mx-4">
-        <div className="flex flex-col md:flex-row md:gap-2 pb-3 w-full md:w-auto">
+        <div className="flex flex-col md:flex-row md:gap-2 w-full md:w-auto">
           <input
             type="text"
             placeholder="Search by name"
@@ -60,7 +60,7 @@ const HomePage = () => {
       </div>
 
       {/* all course */}
-      <div className="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-4">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 grid-cols-2 pb-20 pt-5 gap-4">
         {allCourse?.map((course: any) => <CourseCard courses={course} />)}
       </div>
       <div className="text-center text-2xl">{isLoading && <Spinner />}</div>
