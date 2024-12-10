@@ -26,7 +26,7 @@ const UpdateCourseModal = ({
       <FXModal
         title="Update Course"
         buttonText="📝"
-        buttonClassName="bg-default-200 text-default-700 hover:text-default-200 px-4 md:px-6 py-2 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-default-700"
+        buttonClassName="bg-default-200 text-default-700 hover:text-default-200 px-1 py-1 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-default-700"
       >
         <EDForm onSubmit={onSubmit}>
           <div className="py-1">

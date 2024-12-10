@@ -16,7 +16,6 @@ const Students = () => {
         <table className="table-auto border-collapse border border-gray-300 w-full text-left">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">ID</th>
               <th className="border border-gray-300 px-4 py-2">Name</th>
               <th className="border border-gray-300 px-4 py-2">Email</th>
               <th className="border border-gray-300 px-4 py-2">Status</th>
@@ -25,7 +24,6 @@ const Students = () => {
           <tbody>
             {filterStudentData.map((student: any) => (
               <tr key={student.id}>
-                <td className="border border-gray-300 px-4 py-2">{student.id}</td>
                 <td className="border border-gray-300 px-4 py-2">{student.name}</td>
                 <td className="border border-gray-300 px-4 py-2">{student.email}</td>
                 <td className="border border-gray-300 px-4 py-2">{student.status}</td>
