@@ -17,21 +17,18 @@ const Courses = () => {
         <table className="table-auto border-collapse border border-gray-300 w-full text-left">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">ID</th>
               <th className="border border-gray-300 px-4 py-2">Name</th>
               <th className="border border-gray-300 px-4 py-2">Description</th>
               <th className="border border-gray-300 px-4 py-2">Credits</th>
               <th className="border border-gray-300 px-4 py-2">Start Date</th>
               <th className="border border-gray-300 px-4 py-2">End Date</th>
               <th className="border border-gray-300 px-4 py-2">Photo</th>
+              <th className="border border-gray-300 px-4 py-2">Faculty</th>
             </tr>
           </thead>
           <tbody>
             {allCourseData.map((course: any) => (
               <tr key={course.id}>
-                <td className="border border-gray-300 px-4 py-2">
-                  {course.id}
-                </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {course.name}
                 </td>
@@ -53,6 +50,11 @@ const Courses = () => {
                     alt={course.name}
                     className="w-16 h-16 object-cover rounded"
                   />
+                </td>
+                <td  className="border border-gray-300 px-4 py-2">
+                  <a href={`/dashboard/courses/${course.id}`}>
+                  view
+                  </a>
                 </td>
               </tr>
             ))}

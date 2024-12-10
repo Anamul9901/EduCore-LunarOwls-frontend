@@ -4,15 +4,9 @@ import EDInput from "../form/EDInput";
 import Loading from "../UI/loading";
 import FXModal from "./FXModal";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
-import { useAddCourseMutation } from "@/src/redux/features/course/coursApi";
 import EDDateTime from "../form/EDDateTime";
 
 const AddCourseModal = () => {
-  const [addCourse, { error, isLoading }] = useAddCourseMutation();
-  // if (error) {
-  //   toast.error((error as any)?.data?.message);
-  // }
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const StartDateTime = data.startDate;
     const EndDataTime = data.endDate;
@@ -23,14 +17,14 @@ const AddCourseModal = () => {
     data.endDate = EndIsoDate;
     data.credits = Number(data.credits)
     console.log("data", data);
-    const res = await addCourse(data).unwrap();
-    if (res?.data) {
-      toast.success(res?.message);
-    }
+    // const res = await addCourse(data).unwrap();
+    // if (res?.data) {
+    //   toast.success(res?.message);
+    // }
   };
   return (
     <div>
-      {isLoading && <Loading />}
+      {/* {isLoading && <Loading />} */}
       <FXModal
         title="Add new Course"
         buttonText="Add Course"
