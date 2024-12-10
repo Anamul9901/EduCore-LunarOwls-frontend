@@ -1,68 +1,66 @@
 import { Button } from "@nextui-org/button";
 import EDForm from "../form/EDForm";
-import EDInput from "../form/EDInput";
-import Loading from "../UI/loading";
 import FXModal from "./FXModal";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import EDDateTime from "../form/EDDateTime";
+import { useGetAlluserQuery } from "@/src/redux/features/user/userApi";
+import { useAddFacultyMutation } from "@/src/redux/features/courseFaculty/courseFacultyApi";
 
-const AddCourseModal = () => {
+const AssignFaculty = ({
+  courseid,
+  getCurrentCourseFacultysId,
+  
+}: {
+  courseid: any;
+  getCurrentCourseFacultysId: any;
+}) => {
+  const { data: allUser } = useGetAlluserQuery(undefined);
+  const allUserData = allUser?.data;
+  const filterFacultyData = allUserData?.filter(
+    (item: any) => item?.role === "faculty" && !getCurrentCourseFacultysId.includes(item?.id)
+  );
+  
+  console.log("facutyids", getCurrentCourseFacultysId);
+  
+  const [addFaculty] = useAddFacultyMutation();
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const StartDateTime = data.startDate;
-    const EndDataTime = data.endDate;
-
-    const startIsoDate = new Date(StartDateTime).toISOString();
-    const EndIsoDate = new Date(EndDataTime).toISOString();
-    data.startDate = startIsoDate;
-    data.endDate = EndIsoDate;
-    data.credits = Number(data.credits)
-    console.log("data", data);
-    // const res = await addCourse(data).unwrap();
-    // if (res?.data) {
-    //   toast.success(res?.message);
-    // }
+    console.log("Submitted Data:", data);
   };
+
+  const handleAddFacultyId = async (id: string) => {
+    const data = { facultyId: id, courseId: courseid };
+    const res = await addFaculty(data);
+    console.log("res", res);
+  };
+
   return (
     <div>
-      {/* {isLoading && <Loading />} */}
       <FXModal
-        title="Add new Course"
-        buttonText="Add Course"
-        buttonClassName="bg-default-200 text-default-700 hover:text-default-200 px-4 md:px-6 py-2 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-default-700"
+        title="Assign Faculty to Course"
+        buttonText="Assign Faculty"
+        buttonClassName="bg-blue-500 text-white px-4 md:px-6 py-2 rounded shadow hover:bg-blue-600 transition"
       >
         <EDForm onSubmit={onSubmit}>
-          <div className="py-1">
-            <EDInput label="Name" name="name" required></EDInput>
-          </div>
-          <div className="py-1">
-            <EDInput label="Description" name="description"></EDInput>
-          </div>
-          <div className="py-1">
-            <EDInput label="Credits" name="credits" required></EDInput>
-          </div>
-          <div className="py-1">
-            <EDDateTime
-              name="startDate"
-              label="Start Date & Time"
-              type="datetime-local"
-              size="sm"
-            />
-          </div>
-          <div className="py-1">
-            <EDDateTime
-              name="endDate"
-              label="End Date & Time"
-              type="datetime-local"
-              size="sm"
-            />
-          </div>
-          <div className="py-1">
-            <EDInput label="Photo" name="photo" required></EDInput>
-          </div>
-          <div className="flex justify-center pt-2 w-full pb-2">
-            <Button className="w-full" type="submit">
-              Add Course
-            </Button>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-2 mt-4">
+            {filterFacultyData?.map((faculty: any, idx: number) => (
+              <div
+                key={faculty?.id}
+                className="bg-white p-4 shadow rounded-lg flex items-center space-x-4"
+              >
+                <div className="flex-grow">
+                  <h2 className="font-semibold text-lg text-gray-800">
+                    {faculty?.name}
+                  </h2>
+                  <p className="text-gray-500">{faculty?.email}</p>
+                </div>
+                <Button
+                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+                  onClick={() => handleAddFacultyId(faculty?.id)}
+                >
+                  Select
+                </Button>
+              </div>
+            ))}
           </div>
         </EDForm>
       </FXModal>
@@ -70,4 +68,4 @@ const AddCourseModal = () => {
   );
 };
 
-export default AddCourseModal;
+export default AssignFaculty;
