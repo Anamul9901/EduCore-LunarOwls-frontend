@@ -12,6 +12,16 @@ const courseApi = baseApi.injectEndpoints({
       providesTags: ["course"],
     }),
 
+    getCourseByRole: builder.query({
+      query: () => {
+        return {
+          url: "/courses/byrole",
+          method: "GET",
+        };
+      },
+      providesTags: ["course"],
+    }),
+
     getSingleCourse: builder.query({
       query: (id) => {
         return {
@@ -74,4 +84,5 @@ export const {
   useUpdateCourseMutation,
   useFinishedCourseMutation,
   useDeleteCourseMutation,
+  useGetCourseByRoleQuery,
 } = courseApi;

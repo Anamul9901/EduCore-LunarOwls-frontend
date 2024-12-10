@@ -4,7 +4,7 @@ import AddCourseModal from "@/src/components/modals/AddCourseModal";
 import UpdateCourseModal from "@/src/components/modals/UpdateCourseModal";
 import {
   useDeleteCourseMutation,
-  useGetAllCourseQuery,
+  useGetCourseByRoleQuery,
 } from "@/src/redux/features/course/coursApi";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
@@ -13,9 +13,10 @@ import { toast } from "sonner";
 
 const Courses = () => {
   const [courseId, setCourseId] = useState("");
-  const { data: allCourses } = useGetAllCourseQuery(undefined);
+  const { data: allCourses } = useGetCourseByRoleQuery(undefined);
   const allCourseData = allCourses?.data;
   const [deleteCourse] = useDeleteCourseMutation();
+  console.log('first', allCourseData)
 
   const filterSingleCourse = allCourseData?.filter(
     (item: any) => item.id == courseId
@@ -41,7 +42,7 @@ const Courses = () => {
               <th className="border border-gray-300 px-4 py-2">Name</th>
               <th className="border border-gray-300 px-4 py-2">Start Date</th>
               <th className="border border-gray-300 px-4 py-2">Photo</th>
-              <th className="border border-gray-300 px-4 py-2">Faculty</th>
+              <th className="border border-gray-300 px-4 py-2">Details</th>
               <th className="border border-gray-300 px-4 py-2">Students</th>
               <th className="border border-gray-300 px-4 py-2">Action</th>
               <th className="border border-gray-300 px-4 py-2">Classes</th>
