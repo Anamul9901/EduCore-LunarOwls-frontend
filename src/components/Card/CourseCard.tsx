@@ -3,7 +3,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
 
-const ProductsCard = ({ products }: { products: any }) => {
+const CourseCard = ({ products }: { products: any }) => {
 
   return (
     <div className="max-w-sm mx-auto bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-y-105 hover:shadow-2xl">
@@ -92,4 +92,4 @@ const ProductsCard = ({ products }: { products: any }) => {
   );
 };
 
-export default ProductsCard;
+export default CourseCard;

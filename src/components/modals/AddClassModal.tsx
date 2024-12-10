@@ -5,25 +5,17 @@ import Loading from "../UI/loading";
 import FXModal from "./FXModal";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
-import { useAddCourseMutation } from "@/src/redux/features/course/coursApi";
 import EDDateTime from "../form/EDDateTime";
+import { useAddclassMutation } from "@/src/redux/features/class/classApi";
 
-const AddCourseModal = () => {
-  const [addCourse, { error, isLoading }] = useAddCourseMutation();
+const AddClassDataModal = ({ courseId }: { courseId: any }) => {
+  const [addClass, { error, isLoading }] = useAddclassMutation();
   // if (error) {
   //   toast.error((error as any)?.data?.message);
   // }
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const StartDateTime = data.startDate;
-    const EndDataTime = data.endDate;
-
-    const startIsoDate = new Date(StartDateTime).toISOString();
-    const EndIsoDate = new Date(EndDataTime).toISOString();
-    data.startDate = startIsoDate;
-    data.endDate = EndIsoDate;
-    data.credits = Number(data.credits)
-    console.log("data", data);
-    const res = await addCourse(data).unwrap();
+      data.courseId = courseId;
+    const res = await addClass(data).unwrap();
     if (res?.data) {
       toast.success(res?.message);
     }
@@ -32,8 +24,8 @@ const AddCourseModal = () => {
     <div>
       {isLoading && <Loading />}
       <FXModal
-        title="Add new Course"
-        buttonText="Add Course"
+        title="Add Class"
+        buttonText="Add Class"
         buttonClassName="bg-default-200 text-default-700 hover:text-default-200 px-4 md:px-6 py-2 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-default-700"
       >
         <EDForm onSubmit={onSubmit}>
@@ -44,26 +36,15 @@ const AddCourseModal = () => {
             <EDInput label="Description" name="description"></EDInput>
           </div>
           <div className="py-1">
-            <EDInput label="Credits" name="credits" type="number" required></EDInput>
+            <EDInput label="Location" name="location" required></EDInput>
           </div>
           <div className="py-1">
             <EDDateTime
-              name="startDate"
+              name="startTime"
               label="Start Date & Time"
               type="datetime-local"
               size="sm"
             />
-          </div>
-          <div className="py-1">
-            <EDDateTime
-              name="endDate"
-              label="End Date & Time"
-              type="datetime-local"
-              size="sm"
-            />
-          </div>
-          <div className="py-1">
-            <EDInput label="Photo" name="photo"></EDInput>
           </div>
           <div className="flex justify-center pt-2 w-full pb-2">
             <Button className="w-full" type="submit">
@@ -76,4 +57,4 @@ const AddCourseModal = () => {
   );
 };
 
-export default AddCourseModal;
+export default AddClassDataModal;

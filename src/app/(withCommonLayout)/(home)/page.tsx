@@ -2,6 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
+import { useGetAllCourseQuery } from "@/src/redux/features/course/coursApi";
 
 const HomePage = () => {
   const [productLimit, setProductLimit] = useState(10);
@@ -9,6 +10,10 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
   const [sortOption, setSortOption] = useState("");
+
+  const { data: getAllCourse } = useGetAllCourseQuery(undefined);
+  const allCourse = getAllCourse?.data;
+  console.log("first", allCourse);
 
   const data = { limit: productLimit, page: productPage, searchTerm, category };
 
@@ -81,7 +86,7 @@ const HomePage = () => {
 
       {/* all course */}
       <div className="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-4">
-        all course
+        {}
       </div>
       <h1>No course found</h1>
       <div className="text-center text-2xl">{isLoading && <Spinner />}</div>

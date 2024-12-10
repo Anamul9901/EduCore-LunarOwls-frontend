@@ -13,11 +13,9 @@ const UpdateCourseModal = ({
 }) => {
   const [updateCourse, { isLoading }] = useUpdateCourseMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("data", data);
     data.credits = Number(data.credits)
     const finalData = { id: filterSingleCourse?.id, data };
     const res = await updateCourse(finalData).unwrap();
-    console.log("res", res);
     if(res){
         toast.success(res.message)
     }
