@@ -1,4 +1,5 @@
 "use client";
+import ChangePasswordModal from "@/src/components/modals/ChangePasswordModal";
 import { useGetMyDataQuery } from "@/src/redux/features/user/userApi";
 import { useEffect, useState } from "react";
 
@@ -6,8 +7,6 @@ const Dashboard = () => {
   const [isMounted, setIsMounted] = useState(false);
   const { data: myData } = useGetMyDataQuery(undefined);
   const currentUserData = myData?.data;
-
-
 
   // For hydration error handle
   useEffect(() => {
@@ -58,15 +57,11 @@ const Dashboard = () => {
               </div>
               <div className="bg-gray-500 p-4 rounded-lg shadow">
                 <h4 className=" font-semibold text-gray-200">Shop Name</h4>
-                <p className=" text-gray-200">
-                  name
-                </p>
+                <p className=" text-gray-200">name</p>
               </div>
               <div className="bg-gray-500 p-4 rounded-lg shadow">
                 <h4 className=" font-semibold text-gray-200">Shop Title</h4>
-                <p className=" text-gray-200">
-                  title
-                </p>
+                <p className=" text-gray-200">title</p>
               </div>
             </div>
           </>
@@ -74,9 +69,7 @@ const Dashboard = () => {
 
         {/* Actions Section */}
         <div className="px-6 py-4 border-t border-gray-200 flex justify-center items-center space-x-4">
-          change pass model
-
-          
+          <ChangePasswordModal />
         </div>
 
         {/* Account Details */}

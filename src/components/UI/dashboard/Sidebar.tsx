@@ -39,12 +39,10 @@ const Sidebar = () => {
         <ul className="menu flex flex-col items-center md:items-start p-4">
           {/* Logo */}
           <Link href="/dashboard?key=dashboard">
-            <div className="flex justify-center mb-8 hover:scale-105 transition-all duration-300">
-              <img
-                className="md:w-2/6 w-12 rounded-full border border-purple-500 shadow-lg"
-                src="https://i.ibb.co.com/61WySQq/pngwing-com-3.png"
-                alt="Logo"
-              />
+            <div className="flex justify-center mb-8 hover:scale-105 transition-all duration-300 text-center text-xl font-bold">
+              <div>
+              EduCore
+              </div>
             </div>
           </Link>
 
