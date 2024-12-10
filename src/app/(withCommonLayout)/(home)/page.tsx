@@ -12,11 +12,11 @@ const HomePage = () => {
   const [category, setCategory] = useState("");
   const [sortOption, setSortOption] = useState("");
 
-  const { data: getAllCourse } = useGetAllCourseQuery(undefined);
+  const data = { limit: productLimit, page: productPage, searchTerm, category };
+  const { data: getAllCourse } = useGetAllCourseQuery(data);
   const allCourse = getAllCourse?.data;
   console.log("first", allCourse);
 
-  const data = { limit: productLimit, page: productPage, searchTerm, category };
 
   const isLoading = false;
 
@@ -55,16 +55,7 @@ const HomePage = () => {
             className="border px-3 py-2 rounded-md w-full md:w-60 mb-2 md:mb-0"
           />
 
-          {/* Sorting Options */}
-          <select
-            value={sortOption}
-            onChange={(e) => setCategory(e.target.value)}
-            className="border px-3 py-2 rounded-md w-full md:w-48"
-          >
-            <option value="" disabled>
-              Sort by Category
-            </option>
-          </select>
+        
         </div>
       </div>
 

@@ -3,9 +3,15 @@ import { baseApi } from "../../api/baseApi";
 const courseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCourse: builder.query({
-      query: () => {
+      query: (data) => {
+        const params = new URLSearchParams();
+
+        if (data?.searchTerm) params.append("searchTerm", data.searchTerm);
+        if (data?.category) params.append("category", data.category);
+        if (data?.limit) params.append("limit", data.limit);
+        if (data?.page) params.append("page", data.page);
         return {
-          url: "/courses",
+          url: `/courses?${params.toString()}`,
           method: "GET",
         };
       },
