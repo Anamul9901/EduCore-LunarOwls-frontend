@@ -68,6 +68,60 @@ const Sidebar = () => {
             </Link>
           </li>
 
+          {/* Students */}
+          <li className="w-full mb-2">
+            <Link href="/dashboard/students?key=students">
+              <div
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                  queryValue === "students"
+                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    : ""
+                }`}
+              >
+                <span className="material-icons md:hidden">
+                  <MdSpaceDashboard />
+                </span>
+                <span className="hidden md:inline-block ml-2">students</span>
+              </div>
+            </Link>
+          </li>
+
+          {/* Teachers */}
+          <li className="w-full mb-2">
+            <Link href="/dashboard/faculties?key=faculties">
+              <div
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                  queryValue === "faculties"
+                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    : ""
+                }`}
+              >
+                <span className="material-icons md:hidden">
+                  <MdSpaceDashboard />
+                </span>
+                <span className="hidden md:inline-block ml-2">Faculties</span>
+              </div>
+            </Link>
+          </li>
+
+          {/* courses */}
+          <li className="w-full mb-2">
+            <Link href="/dashboard/courses?key=courses">
+              <div
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                  queryValue === "courses"
+                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    : ""
+                }`}
+              >
+                <span className="material-icons md:hidden">
+                  <MdSpaceDashboard />
+                </span>
+                <span className="hidden md:inline-block ml-2">Courses</span>
+              </div>
+            </Link>
+          </li>
+
 
           <hr className="border-purple-500 w-full mb-4 opacity-40" />
 

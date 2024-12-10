@@ -35,17 +35,17 @@ const Register = () => {
       const { email, name, id, role } = res?.data?.result;
       const finalUserData = { email, name, id, role };
       dispatch(setUser({ user: finalUserData, token: res?.data?.accessToken }));
-      if (res?.data?.result?.role == "vendor") {
-        router.push("/create-shop");
-      } else {
-        router.push("/");
-      }
+      // if (res?.data?.result?.role == "vendor") {
+      //   router.push("/create-shop");
+      // } else {
+      //   router.push("/");
+      // }
     }
   };
 
   const selectOpdiont = [
-    { key: "customer", label: "User" },
-    { key: "vendor", label: "Vendor" },
+    { key: "student", label: "Student" },
+    { key: "teacher", label: "Teacher" },
   ];
 
   return (
