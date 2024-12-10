@@ -22,7 +22,6 @@ const SingleCourse = () => {
     (item: any) => item?.role === "faculty" && getCurrentCourseFacultysId.includes(item?.id)
   );
 
-  console.log("first, ", filterFacultyData);
   if (!singleCourse) return <p>Loading course details...</p>;
 
   return (

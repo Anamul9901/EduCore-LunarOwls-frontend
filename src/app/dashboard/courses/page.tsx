@@ -1,12 +1,19 @@
 "use client";
 
 import AddCourseModal from "@/src/components/modals/AddCourseModal";
+import UpdateCourseModal from "@/src/components/modals/UpdateCourseModal";
 import { useGetAllCourseQuery } from "@/src/redux/features/course/coursApi";
+import { useState } from "react";
 
 const Courses = () => {
+  const [courseId, setCourseId] = useState("");
   const { data: allCourses } = useGetAllCourseQuery(undefined);
   const allCourseData = allCourses?.data;
+  console.log("first", courseId);
 
+  const filterSingleCourse = allCourseData?.filter(
+    (item: any) => item.id == courseId
+  );
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Courses List</h1>
@@ -18,12 +25,11 @@ const Courses = () => {
           <thead>
             <tr>
               <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Description</th>
-              <th className="border border-gray-300 px-4 py-2">Credits</th>
               <th className="border border-gray-300 px-4 py-2">Start Date</th>
-              <th className="border border-gray-300 px-4 py-2">End Date</th>
               <th className="border border-gray-300 px-4 py-2">Photo</th>
               <th className="border border-gray-300 px-4 py-2">Faculty</th>
+              <th className="border border-gray-300 px-4 py-2">Students</th>
+              <th className="border border-gray-300 px-4 py-2">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -33,16 +39,7 @@ const Courses = () => {
                   {course.name}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {course.description}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {course.credits}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
                   {new Date(course.startDate).toLocaleString()}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {new Date(course.endDate).toLocaleString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <img
@@ -51,10 +48,18 @@ const Courses = () => {
                     className="w-16 h-16 object-cover rounded"
                   />
                 </td>
-                <td  className="border border-gray-300 px-4 py-2">
-                  <a href={`/dashboard/courses/${course.id}`}>
-                  view
-                  </a>
+                <td className="border border-gray-300 px-4 py-2">
+                  <a href={`/dashboard/courses/${course.id}`}>view</a>
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <a href={`/dashboard/courses/students/${course.id}`}>view</a>
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <div onClick={() => setCourseId(course?.id)}>
+                    <UpdateCourseModal
+                      filterSingleCourse={filterSingleCourse?.[0]}
+                    />
+                  </div>
                 </td>
               </tr>
             ))}

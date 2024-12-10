@@ -19,18 +19,15 @@ const AssignFaculty = ({
     (item: any) => item?.role === "faculty" && !getCurrentCourseFacultysId.includes(item?.id)
   );
   
-  console.log("facutyids", getCurrentCourseFacultysId);
   
   const [addFaculty] = useAddFacultyMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Submitted Data:", data);
   };
 
   const handleAddFacultyId = async (id: string) => {
     const data = { facultyId: id, courseId: courseid };
     const res = await addFaculty(data);
-    console.log("res", res);
   };
 
   return (
