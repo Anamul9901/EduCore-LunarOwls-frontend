@@ -122,6 +122,24 @@ const Sidebar = () => {
             </Link>
           </li>
 
+          {/* courses */}
+          <li className="w-full mb-2">
+            <Link href="/dashboard/my-course?key=my-course">
+              <div
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                  queryValue === "my-course"
+                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    : ""
+                }`}
+              >
+                <span className="material-icons md:hidden">
+                  <MdSpaceDashboard />
+                </span>
+                <span className="hidden md:inline-block ml-2">My-course</span>
+              </div>
+            </Link>
+          </li>
+
 
           <hr className="border-purple-500 w-full mb-4 opacity-40" />
 

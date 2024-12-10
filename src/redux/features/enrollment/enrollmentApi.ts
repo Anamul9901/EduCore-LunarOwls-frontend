@@ -22,6 +22,16 @@ const enrollmentApi = baseApi.injectEndpoints({
       providesTags: ["enrollment"],
     }),
 
+    getMyEnrollment: builder.query({
+      query: () => {
+        return {
+          url: `/enrolment-student/my-enrolld/data`,
+          method: "GET",
+        };
+      },
+      providesTags: ["enrollment"],
+    }),
+
     addenrollment: builder.mutation({
       query: (data) => {
         return {
@@ -51,4 +61,5 @@ export const {
   useGetSingleenrollmentQuery,
   useAddenrollmentMutation,
   useDeleteenrollmentMutation,
+  useGetMyEnrollmentQuery
 } = enrollmentApi;

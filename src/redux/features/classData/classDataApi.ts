@@ -4,6 +4,7 @@ const classDataApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllclassData: builder.query({
       query: (id) => {
+        console.log('id', id)
         return {
           url: `/class-data/${id}`,
           method: "GET",
