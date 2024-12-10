@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { useGetAllCourseQuery } from "@/src/redux/features/course/coursApi";
+import CourseCard from "@/src/components/Card/CourseCard";
 
 const HomePage = () => {
   const [productLimit, setProductLimit] = useState(10);
@@ -54,23 +55,6 @@ const HomePage = () => {
             className="border px-3 py-2 rounded-md w-full md:w-60 mb-2 md:mb-0"
           />
 
-          {/* <div className="flex gap-2 mb-2 md:mb-0">
-            <input
-              type="number"
-              placeholder="Min time"
-              value={minUpvoteFilter}
-              onChange={(e) => setminUpvoteFilter(e.target.value)}
-              className="border w-32 flex-1 px-3 py-2 rounded-md"
-            />
-            <input
-              type="number"
-              placeholder="Max time"
-              value={maxUpvoteFilter}
-              onChange={(e) => setmaxUpvoteFilter(e.target.value)}
-              className="border w-32 flex-1 px-3 py-2 rounded-md"
-            />
-          </div> */}
-
           {/* Sorting Options */}
           <select
             value={sortOption}
@@ -86,9 +70,8 @@ const HomePage = () => {
 
       {/* all course */}
       <div className="grid lg:grid-cols-4 xl:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-4">
-        {}
+        {allCourse?.map((course: any) => <CourseCard courses={course} />)}
       </div>
-      <h1>No course found</h1>
       <div className="text-center text-2xl">{isLoading && <Spinner />}</div>
     </div>
   );
