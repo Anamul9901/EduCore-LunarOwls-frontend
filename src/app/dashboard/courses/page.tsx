@@ -30,6 +30,7 @@ const Courses = () => {
               <th className="border border-gray-300 px-4 py-2">Faculty</th>
               <th className="border border-gray-300 px-4 py-2">Students</th>
               <th className="border border-gray-300 px-4 py-2">Action</th>
+              <th className="border border-gray-300 px-4 py-2">Classes</th>
             </tr>
           </thead>
           <tbody>
@@ -60,6 +61,9 @@ const Courses = () => {
                       filterSingleCourse={filterSingleCourse?.[0]}
                     />
                   </div>
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <a href={`/dashboard/courses/classes/${course.id}`}>view</a>
                 </td>
               </tr>
             ))}
