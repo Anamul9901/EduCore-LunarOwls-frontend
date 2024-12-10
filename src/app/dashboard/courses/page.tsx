@@ -6,7 +6,7 @@ import {
   useDeleteCourseMutation,
   useGetCourseByRoleQuery,
 } from "@/src/redux/features/course/coursApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { toast } from "sonner";
@@ -16,7 +16,8 @@ const Courses = () => {
   const { data: allCourses } = useGetCourseByRoleQuery(undefined);
   const allCourseData = allCourses?.data;
   const [deleteCourse] = useDeleteCourseMutation();
-  console.log('first', allCourseData)
+  
+  const [isMounted, setIsMounted] = useState(false);
 
   const filterSingleCourse = allCourseData?.filter(
     (item: any) => item.id == courseId
@@ -29,6 +30,15 @@ const Courses = () => {
       toast.success(res.message);
     }
   };
+
+  // For hydration error handle
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Courses List</h1>

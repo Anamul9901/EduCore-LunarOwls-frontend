@@ -1,14 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-import { FaHome, FaUsers } from "react-icons/fa";
-import {
-  MdAdminPanelSettings,
-  MdSpaceDashboard,
-  MdSubscriptions,
-} from "react-icons/md";
-import { IoFastFood } from "react-icons/io5";
+import { Suspense, useEffect, useState } from "react";
+import { FaHome } from "react-icons/fa";
+import { MdSpaceDashboard } from "react-icons/md";
 import { useAppSelector } from "@/src/redux/hooks";
 import { selectCurrentUser } from "@/src/redux/features/auth/authSlice";
 import React from "react";
@@ -21,16 +16,21 @@ const Loading = () => (
 );
 
 const Sidebar = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const searchParams = useSearchParams();
   const queryValue = searchParams?.get("key");
 
   const user = useAppSelector(selectCurrentUser);
-  // const currentUser: any = user?.user;
-  let currenttUser;
-  if (user?.token) {
-    // currenttUser = verifyToken(user?.token);
-  }
   const currenttUserRole = (user as any)?.user?.role;
+
+  // For hydration error handle
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen fixed h-full flex bg-gray-900">
@@ -68,78 +68,113 @@ const Sidebar = () => {
             </Link>
           </li>
 
-          {/* Students */}
-          <li className="w-full mb-2">
-            <Link href="/dashboard/students?key=students">
-              <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "students"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                    : ""
-                }`}
-              >
-                <span className="material-icons md:hidden">
-                  <MdSpaceDashboard />
-                </span>
-                <span className="hidden md:inline-block ml-2">students</span>
-              </div>
-            </Link>
-          </li>
+          {currenttUserRole == "student" && (
+            <>
+              {/* my course */}
+              <li className="w-full mb-2">
+                <Link href="/dashboard/my-course?key=my-course">
+                  <div
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                      queryValue === "my-course"
+                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        : ""
+                    }`}
+                  >
+                    <span className="material-icons md:hidden">
+                      <MdSpaceDashboard />
+                    </span>
+                    <span className="hidden md:inline-block ml-2">
+                      My-course
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            </>
+          )}
 
-          {/* Teachers */}
-          <li className="w-full mb-2">
-            <Link href="/dashboard/faculties?key=faculties">
-              <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "faculties"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                    : ""
-                }`}
-              >
-                <span className="material-icons md:hidden">
-                  <MdSpaceDashboard />
-                </span>
-                <span className="hidden md:inline-block ml-2">Faculties</span>
-              </div>
-            </Link>
-          </li>
+          {currenttUserRole == "faculty" && (
+            <>
+              {/* courses */}
+              <li className="w-full mb-2">
+                <Link href="/dashboard/courses?key=courses">
+                  <div
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                      queryValue === "courses"
+                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        : ""
+                    }`}
+                  >
+                    <span className="material-icons md:hidden">
+                      <MdSpaceDashboard />
+                    </span>
+                    <span className="hidden md:inline-block ml-2">Courses</span>
+                  </div>
+                </Link>
+              </li>
+            </>
+          )}
 
-          {/* courses */}
-          <li className="w-full mb-2">
-            <Link href="/dashboard/courses?key=courses">
-              <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "courses"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                    : ""
-                }`}
-              >
-                <span className="material-icons md:hidden">
-                  <MdSpaceDashboard />
-                </span>
-                <span className="hidden md:inline-block ml-2">Courses</span>
-              </div>
-            </Link>
-          </li>
+          {currenttUserRole == "admin" && (
+            <>
+              {/* Students */}
+              <li className="w-full mb-2">
+                <Link href="/dashboard/students?key=students">
+                  <div
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                      queryValue === "students"
+                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        : ""
+                    }`}
+                  >
+                    <span className="material-icons md:hidden">
+                      <MdSpaceDashboard />
+                    </span>
+                    <span className="hidden md:inline-block ml-2">
+                      Students
+                    </span>
+                  </div>
+                </Link>
+              </li>
 
-          {/* courses */}
-          <li className="w-full mb-2">
-            <Link href="/dashboard/my-course?key=my-course">
-              <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "my-course"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                    : ""
-                }`}
-              >
-                <span className="material-icons md:hidden">
-                  <MdSpaceDashboard />
-                </span>
-                <span className="hidden md:inline-block ml-2">My-course</span>
-              </div>
-            </Link>
-          </li>
+              {/* Faculty */}
+              <li className="w-full mb-2">
+                <Link href="/dashboard/faculties?key=faculties">
+                  <div
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                      queryValue === "faculties"
+                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        : ""
+                    }`}
+                  >
+                    <span className="material-icons md:hidden">
+                      <MdSpaceDashboard />
+                    </span>
+                    <span className="hidden md:inline-block ml-2">
+                      Faculties
+                    </span>
+                  </div>
+                </Link>
+              </li>
 
+              {/* courses */}
+              <li className="w-full mb-2">
+                <Link href="/dashboard/courses?key=courses">
+                  <div
+                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                      queryValue === "courses"
+                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                        : ""
+                    }`}
+                  >
+                    <span className="material-icons md:hidden">
+                      <MdSpaceDashboard />
+                    </span>
+                    <span className="hidden md:inline-block ml-2">Courses</span>
+                  </div>
+                </Link>
+              </li>
+            </>
+          )}
 
           <hr className="border-purple-500 w-full mb-4 opacity-40" />
 

@@ -1,5 +1,4 @@
 "use client";
-import EDDateTime from "@/src/components/form/EDDateTime";
 import EDForm from "@/src/components/form/EDForm";
 import EDInput from "@/src/components/form/EDInput";
 import Loading from "@/src/components/UI/loading";
@@ -51,7 +50,7 @@ const Login = () => {
 
       <div className="bg-default-100 shadow-lg rounded-lg w-full max-w-md p-8 mx-4">
         <h3 className="text-3xl font-bold text-center text-default-700">
-          Login to CookUp
+          Login to EduCore
         </h3>
         <p className="text-center text-default-800 mb-6">
           Welcome back! Let’s get started.

@@ -25,7 +25,7 @@ const ClassData = () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold text-center mb-6">
-        {/* Class Data for Class ID: {classid} */}
+        Class Data 
       </h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300 text-left">

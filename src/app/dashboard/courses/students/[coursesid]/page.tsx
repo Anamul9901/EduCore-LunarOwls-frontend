@@ -1,9 +1,11 @@
 "use client";
 import { useGetSingleenrollmentQuery } from "@/src/redux/features/enrollment/enrollmentApi";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const CourseStudents = () => {
+  
+  const [isMounted, setIsMounted] = useState(false);
   const { coursesid } = useParams();
 
   const {
@@ -13,6 +15,14 @@ const CourseStudents = () => {
   } = useGetSingleenrollmentQuery(coursesid);
   const enrollmentStudent = getAllCoursesStudent?.data;
 
+  // For hydration error handle
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
   if (isLoading)
     return (
       <div className="text-center text-lg mt-10 text-white">Loading...</div>

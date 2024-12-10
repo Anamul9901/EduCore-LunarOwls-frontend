@@ -24,7 +24,7 @@ const StudentClass = () => {
 
   return (
     <div className="p-6">
-      {/* <h1 className="text-2xl font-bold text-center mb-6">Classes for Course: {courseid}</h1> */}
+      <h1 className="text-2xl font-bold text-center mb-6">Classes</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-600 text-left ">
           <thead className="bg-gray-950 text-sm uppercase">

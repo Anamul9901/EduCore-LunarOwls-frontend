@@ -21,7 +21,7 @@ const Page = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold text-center mb-6">My Enrollments</h1>
+      <h1 className="text-2xl font-bold text-center mb-6">My Enrollments Course</h1>
       <div className="flex flex-wrap gap-6 justify-center">
         {myEnrollment && myEnrollment.length > 0 ? (
           myEnrollment.map((enrollment: any) => (
